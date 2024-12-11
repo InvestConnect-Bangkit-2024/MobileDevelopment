@@ -1,0 +1,12 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CapstoneProduct" parent="Theme.Material3.DayNight">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">#0B57D0</item> <!-- Set to your color -->
+        <item name="colorPrimaryDark">#084A8D</item> <!-- Darker shade for status bar -->
+        <item name="colorAccent">#0B57D0</item>
+
+    </style>
+
+    <style name="Theme.CapstoneProduct" parent="Base.Theme.CapstoneProduct" />
+</resources>
