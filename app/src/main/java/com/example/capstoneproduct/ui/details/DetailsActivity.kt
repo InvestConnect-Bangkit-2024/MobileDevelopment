@@ -7,7 +7,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
-import com.example.capstoneproduct.data.Data
+import com.example.capstoneproduct.data.investors.DataItem
+import com.example.capstoneproduct.data.response.upload.investors.Data
 import com.example.capstoneproduct.databinding.ActivityDetailsBinding
 import kotlinx.coroutines.launch
 
@@ -24,6 +25,7 @@ class DetailsActivity : AppCompatActivity() {
     private lateinit var tvDealType: TextView
     private lateinit var tvGeographic: TextView
     private lateinit var tvCriteria: TextView
+    private lateinit var tvPhone: TextView
 
     private var _binding: ActivityDetailsBinding? = null
     private val binding get() = _binding!!
@@ -36,39 +38,47 @@ class DetailsActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+
+
         imgPhoto = binding.imgItemPhoto
         tvName = binding.tvItemName
         tvLocation = binding.tvLocation
-        tvSector = binding.tvSector
+        tvSector = binding.tvInvestmentFocus
         tvStages = binding.tvStages
         tvThesis = binding.tvThesis
-        tvDeal = binding.tvDeal
-        tvInvestments = binding.tvInvestments
+        tvDeal = binding.tvTotalDeals
+        tvInvestments = binding.tvTotalInvestments
         tvDealType = binding.tvDealType
-        tvGeographic = binding.tvGeographic
+        tvGeographic = binding.tvGeographicFocus
         tvCriteria = binding.tvCriteria
+        tvPhone = binding.tvPhoneNumber
 
         lifecycleScope.launch {
             showLoading(true)
             try {
-                getInvestorDetails(data = Data())
+                getInvestorDetails(data = DataItem())
             } finally {
                 showLoading(false)
             }
         }
     }
 
-    private fun getInvestorDetails(data: Data) {
+    private fun getInvestorDetails(data: DataItem) {
+
+        // Update TextViews with data from the Data object
         binding.tvItemName.text = data.investorName
         binding.tvLocation.text = data.location
-        binding.tvSector.text = data.investmentFocus
+        binding.tvInvestmentFocus.text = data.investmentFocus
         binding.tvStages.text = data.stages
         binding.tvThesis.text = data.thesis
-        binding.tvDeal.text = data.totalDeals
-        binding.tvInvestments.text = data.totalInvestments
+        binding.tvTotalDeals.text = data.totalDeals
+        binding.tvTotalInvestments.text = data.totalInvestments
         binding.tvDealType.text = data.dealType
-        binding.tvGeographic.text = data.geographicFocus
+        binding.tvGeographicFocus.text = data.geographicFocus
         binding.tvCriteria.text = data.criteria
+        binding.tvPhoneNumber.text = data.phoneNumber
+
+        // Load the image using Glide
         Glide.with(this)
             .load(data.imgUrl)
             .into(binding.imgItemPhoto)
@@ -84,6 +94,7 @@ class DetailsActivity : AppCompatActivity() {
         val geographic = intent.getStringExtra("geographic")
         val criteria = intent.getStringExtra("criteria")
         val img = intent.getStringExtra("img")
+        val phone = intent.getStringExtra("phone")
 
         tvName.text = name
         tvLocation.text = location
@@ -95,10 +106,13 @@ class DetailsActivity : AppCompatActivity() {
         tvDealType.text = dealType
         tvGeographic.text = geographic
         tvCriteria.text = criteria
+        tvPhone.text = phone
+
         Glide.with(this)
             .load(img)
             .into(imgPhoto)
     }
+
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE

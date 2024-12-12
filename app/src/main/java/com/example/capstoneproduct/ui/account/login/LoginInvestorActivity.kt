@@ -71,32 +71,18 @@ class LoginInvestorActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 try {
                     val response = viewModel.login(username, password)
-
-                    // Check if the response message indicates success
-                    if (response.message == "Authentication successful" && response.data != null) {
-                        // Save session if successful
+                    // Handle response
+                    if (response.error == false) {
                         viewModel.saveSession(
                             UserModel(
                                 username,
-                                response.data.token.toString()
+                                response.data?.token.toString()
                             )
                         )
-
-                        // Store login state in shared preferences
-                        val sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
-                        val editor = sharedPreferences.edit()
-                        editor.putBoolean("isLoggedIn", true)
-                        editor.apply()
-
-                        // Hide loading indicator
-                        showLoading(false)
-
-                        // Show success dialog
                         AlertDialog.Builder(this@LoginInvestorActivity).apply {
                             setTitle("Yeah!")
                             setMessage("Anda berhasil login!")
                             setPositiveButton("Lanjut") { _, _ ->
-                                // Navigate to MainActivity after successful login
                                 val intent = Intent(context, MainActivity::class.java)
                                 intent.flags =
                                     Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -107,21 +93,16 @@ class LoginInvestorActivity : AppCompatActivity() {
                             show()
                         }
                     } else {
-                        // Handle unsuccessful login if the message is different or data is null
-                        showLoading(false)
-                        val errorMessage = response.message ?: "Login failed, please try again."
-                        showErrorDialog(errorMessage)
+                        // Login failed
+                        showErrorDialog(response.message ?: "Login failed.")
                     }
                 } catch (e: Exception) {
-                    // Handle exception during login
-                    showLoading(false)
-                    Log.e("LoginActivity", "Error: ${e.message}")
-                    showErrorDialog("Gagal melakukan login: ${e.message}")
+                    // Handle exception (e.g., network error)
+                    showErrorDialog("Login failed: ${e.message}")
                 }
             }
         }
     }
-
 
 
     private fun showErrorDialog(message: String) {

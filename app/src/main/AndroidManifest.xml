@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -20,22 +22,25 @@
         android:theme="@style/Theme.CapstoneProduct"
         tools:targetApi="31">
         <activity
+            android:name=".ui.investor.DealInvestorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.account.signup.SignupActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.account.login.LoginUmkmActivity"
             android:exported="false" />
         <activity
             android:name=".ui.account.login.LoginInvestorActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.account.signup.SignupInvestorActivity"
+            android:name=".ui.upload.investor.UploadInvestorActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.account.signup.SignupUmkmActivity"
+            android:name=".ui.upload.umkm.UploadUmkmActivity"
             android:exported="false" />
         <activity
             android:name=".ui.account.login.PilihLoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.account.signup.PilihSignupActivity"
             android:exported="false" />
         <activity
             android:name=".ui.umkm.DealUmkmActivity"
@@ -47,11 +52,11 @@
             android:name=".ui.details.DetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.account.welcome.WelcomeActivity"
+            android:name=".MainActivity"
             android:exported="false" />
-            <activity
-                android:name=".MainActivity"
-                android:exported="true">
+        <activity
+            android:name=".ui.account.welcome.WelcomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,17 +64,15 @@
             </intent-filter>
         </activity>
 
-        <!-- Trigger Google Play services to install the backported photo picker module. -->
-        <!--suppress AndroidDomInspection -->
-        <service android:name="com.google.android.gms.metadata.ModuleDependencies"
-            android:enabled="false"
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
-            tools:ignore="MissingClass">
-            <intent-filter>
-                <action android:name="com.google.android.gms.metadata.MODULE_DEPENDENCIES" />
-            </intent-filter>
-            <meta-data android:name="photopicker_activity:0:required" android:value="" />
-        </service>
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

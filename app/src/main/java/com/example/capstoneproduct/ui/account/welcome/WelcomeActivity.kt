@@ -10,8 +10,8 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.capstoneproduct.databinding.ActivityWelcomeBinding
-import com.example.capstoneproduct.ui.account.login.PilihLoginActivity
-import com.example.capstoneproduct.ui.account.signup.PilihSignupActivity
+import com.example.capstoneproduct.ui.account.login.LoginInvestorActivity
+import com.example.capstoneproduct.ui.account.signup.SignupActivity
 
 class WelcomeActivity : AppCompatActivity() {
 
@@ -42,11 +42,11 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun setupAction() {
         binding.loginButton.setOnClickListener{
-            startActivity(Intent(this, PilihLoginActivity::class.java))
+            startActivity(Intent(this, LoginInvestorActivity::class.java))
         }
 
         binding.signupButton.setOnClickListener{
-            startActivity(Intent(this, PilihSignupActivity::class.java))
+            startActivity(Intent(this, SignupActivity::class.java))
         }
     }
 

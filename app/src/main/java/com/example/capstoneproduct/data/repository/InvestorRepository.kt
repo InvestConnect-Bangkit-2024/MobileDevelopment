@@ -10,19 +10,22 @@ import com.example.capstoneproduct.data.retrofit.ApiService
 class InvestorRepository private constructor(
     private val apiService: ApiService,
 ) {
-    fun getInvestors(): LiveData<Result<List<DataItem>?>?> = liveData {
-        emit(Result.Loading)
+    fun getInvestors(): LiveData<Result<List<DataItem>>> = liveData {
+        emit(Result.Loading) // Emit loading state
+
         try {
             val response = apiService.getInvestor()
-            emit(Result.Success(response.data))
-            if (response.error == false) {
+            emit(Result.Success(response.data)) // Emit success only on valid response
+
+            if (!response.error!!) {
             } else {
-                emit(Result.Error(response.message ?: "Unknown error"))
+                emit(Result.Error(response.message ?: "Unknown error")) // Emit error if response indicates failure
             }
         } catch (e: Exception) {
-            emit(Result.Error(e.message ?: "Unknown error"))
+            emit(Result.Error(e.message ?: "Unknown error")) // Emit error for exceptions
         }
     }
+
 
 
     companion object {

@@ -16,12 +16,9 @@ data class ResponseRegister(
 
 data class Data(
 
-	@field:SerializedName("access_token")
-	val accessToken: String? = null,
-
-	@field:SerializedName("refresh_token")
-	val refreshToken: String? = null,
-
 	@field:SerializedName("user_id")
-	val userId: String? = null
+	val userId: String? = null,
+
+	@field:SerializedName("token")
+	val token: String? = null
 )

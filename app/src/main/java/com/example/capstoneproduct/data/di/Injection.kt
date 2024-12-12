@@ -4,8 +4,10 @@ import android.content.Context
 import com.example.capstoneproduct.data.pref.UserPreference
 import com.example.capstoneproduct.data.repository.UserRepository
 import com.example.capstoneproduct.data.pref.datastore
+import com.example.capstoneproduct.data.repository.DealRepository
 import com.example.capstoneproduct.data.repository.InvestorRepository
 import com.example.capstoneproduct.data.repository.UmkmRepository
+import com.example.capstoneproduct.data.repository.UploadRepository
 import com.example.capstoneproduct.data.retrofit.ApiConfig
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.first
@@ -38,5 +40,29 @@ object Injection {
         val apiService = ApiConfig.getApiService(token)
         val userPreference = UserPreference.getInstance(context.datastore)
         return UmkmRepository.getInstance(apiService, userPreference)
+    }
+
+    fun provideUploadRepository(context: Context): UploadRepository {
+        val userPreference = UserPreference.getInstance(context.datastore)
+        val userToken = UserPreference.getInstance(context.datastore).getSession()
+        val token = runBlocking {
+            withContext(Dispatchers.IO) {
+                userToken.first().token
+            }
+        }
+        val uploadApiService = ApiConfig.getUploadApiService(token)
+        return UploadRepository.getInstance(uploadApiService, userPreference)
+    }
+
+    fun provideDealRepository(context: Context): DealRepository {
+        val userPreference = UserPreference.getInstance(context.datastore)
+        val userToken = UserPreference.getInstance(context.datastore).getSession()
+        val token = runBlocking {
+            withContext(Dispatchers.IO) {
+                userToken.first().token
+            }
+        }
+        val dealApiService = ApiConfig.getDealApiService(token)
+        return DealRepository.getInstance(dealApiService, userPreference)
     }
 }

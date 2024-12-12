@@ -52,31 +52,31 @@
                 tools:ignore="HardcodedText" />
 
             <TextView
-                android:id="@+id/tv_title_sector"
+                android:id="@+id/tv_title_investments_focus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="left"
-                android:text="@string/tv_title_sector"
+                android:text="@string/tv_investment_focus"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/tv_owner_name"
+                app:layout_constraintTop_toBottomOf="@id/tv_location"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/tv_sector"
+                android:id="@+id/tv_investment_focus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="left"
-                android:text="TextView"
-                app:layout_constraintTop_toBottomOf="@+id/tv_title_sector"
+                android:text="Investment Focus"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_investments_focus"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/title_stages"
+                android:id="@+id/tv_title_stages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -85,7 +85,7 @@
                 android:text="@string/tv_title_stages"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/tv_sector"
+                app:layout_constraintTop_toBottomOf="@id/tv_investment_focus"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -95,8 +95,8 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="left"
-                android:text="TextView"
-                app:layout_constraintTop_toBottomOf="@+id/title_stages"
+                android:text="Stages"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_stages"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
@@ -119,12 +119,12 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="left"
-                android:text="TextView"
+                android:text="Thesis"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_thesis"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/tv_title_deals"
+                android:id="@+id/tv_title_total_deals"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -133,22 +133,22 @@
                 android:text="@string/tv_title_deals"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tv_stages"
+                app:layout_constraintTop_toBottomOf="@id/tv_thesis"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/tv_deal"
+                android:id="@+id/tv_total_deals"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="left"
-                android:text="TextView"
-                app:layout_constraintTop_toBottomOf="@id/tv_title_deals"
+                android:text="Total Deals"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_total_deals"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/tv_title_investments"
+                android:id="@+id/tv_title_total_investments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -157,22 +157,22 @@
                 android:text="@string/tv_title_investments"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tv_deal"
+                app:layout_constraintTop_toBottomOf="@id/tv_total_deals"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/tv_investments"
+                android:id="@+id/tv_total_investments"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="left"
-                android:text="TextView"
-                app:layout_constraintTop_toBottomOf="@id/tv_title_investments"
+                android:text="Total Investments"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_total_investments"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/tv_title_dealType"
+                android:id="@+id/tv_title_deal_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -181,22 +181,22 @@
                 android:text="@string/tv_title_dealType"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tv_investments"
+                app:layout_constraintTop_toBottomOf="@id/tv_total_investments"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/tv_dealType"
+                android:id="@+id/tv_deal_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="left"
-                android:text="TextView"
-                app:layout_constraintTop_toBottomOf="@id/tv_title_dealType"
+                android:text="Deal Type"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_deal_type"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
-                android:id="@+id/tv_title_geographic"
+                android:id="@+id/tv_title_geographic_focus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -205,18 +205,18 @@
                 android:text="@string/tv_title_geographic"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tv_dealType"
+                app:layout_constraintTop_toBottomOf="@id/tv_deal_type"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
-                android:id="@+id/tv_geographic"
+                android:id="@+id/tv_geographic_focus"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="left"
-                android:text="TextView"
-                app:layout_constraintTop_toBottomOf="@id/tv_title_dealType"
+                android:text="Geographic Focus"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_geographic_focus"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             <TextView
@@ -229,7 +229,7 @@
                 android:text="@string/tv_title_criteria"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tv_geographic"
+                app:layout_constraintTop_toBottomOf="@id/tv_geographic_focus"
                 tools:ignore="RtlHardcoded" />
 
             <TextView
@@ -239,12 +239,36 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 android:gravity="left"
-                android:text="TextView"
+                android:text="Criteria"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_criteria"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
+            <TextView
+                android:id="@+id/tv_title_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="left"
+                android:text="@string/phone"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/tv_criteria"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/tv_phone_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="left"
+                android:text="Phone Number"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_phone_number"
+                tools:ignore="HardcodedText,RtlHardcoded" />
+
             <Button
-                android:id="@+id/btn_link"
+                android:id="@+id/btnDeal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"

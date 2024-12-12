@@ -40,6 +40,7 @@ class InvestorAdapter : ListAdapter<DataItem, InvestorAdapter.ListViewHolder>(DI
             intent.putExtra("totalInvestments", data?.totalInvestments)
             intent.putExtra("geographic", data?.geographicFocus)
             intent.putExtra("criteria", data?.criteria)
+            intent.putExtra("phone", data?.phoneNumber)
             holder.itemView.context.startActivity(intent)
         }
     }

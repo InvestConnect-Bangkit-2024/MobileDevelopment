@@ -7,12 +7,10 @@ import retrofit2.http.GET
 
 interface ApiService {
     @GET("investors")
-    suspend fun getInvestor(): Investors
+    suspend fun getInvestor(
+    ): Investors
 
     @GET("umkm")
     suspend fun getUmkm(): Umkm
-
-    @GET("DetailsInvestor")
-    suspend fun getDetailInvestor(): DetailsInvestor
 
 }

@@ -1,8 +1,9 @@
-package com.example.capstoneproduct.ui.account.signup
+package com.example.capstoneproduct.ui.upload.investor
 
 import android.Manifest
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
@@ -19,34 +20,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.capstoneproduct.R
 import com.example.capstoneproduct.data.repository.Result
-import com.example.capstoneproduct.databinding.ActivitySignupInvestorBinding
-import com.example.capstoneproduct.ui.ViewModelFactory
-import com.example.capstoneproduct.ui.button.MyEditText
+import com.example.capstoneproduct.databinding.ActivityUploadInvestorBinding
+import com.example.capstoneproduct.ui.investor.InvestorFragment
 import com.example.capstoneproduct.ui.reduceFileImage
 import com.example.capstoneproduct.ui.uriToFile
-import com.google.android.material.textfield.TextInputEditText
 
-class SignupInvestorActivity : AppCompatActivity() {
+class UploadInvestorActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySignupInvestorBinding
-    private lateinit var usernameEditText: TextInputEditText
-    private lateinit var emailEditText: TextInputEditText
-    private lateinit var passwordEditText: MyEditText
-    private lateinit var fullnameEditText: TextInputEditText
-    private lateinit var phoneNumberEditText: TextInputEditText
-    private lateinit var investorNameEditText: TextInputEditText
-    private lateinit var locationEditText: TextInputEditText
-    private lateinit var investmentFocusEditText: TextInputEditText
-    private lateinit var stagesEditText: TextInputEditText
-    private lateinit var thesisEditText: TextInputEditText
-    private lateinit var totalDealsEditText: TextInputEditText
-    private lateinit var totalInvestmentsEditText: TextInputEditText
-    private lateinit var dealTypeEditText: TextInputEditText
-    private lateinit var geographicFocusEditText: TextInputEditText
-    private lateinit var criteriaEditText: TextInputEditText
+    private lateinit var binding: ActivityUploadInvestorBinding
 
-    private val viewModel by viewModels<SignupInvestorViewModel> {
-        ViewModelFactory.getInstance(this)
+    private var currentImageUri: Uri? = null
+
+    private val viewModel by viewModels<UploadInvestorViewModel> {
+        UploadInvestorViewModelFactory.getInstance(this)
     }
 
     private val requestPermissionLauncher =
@@ -66,31 +52,17 @@ class SignupInvestorActivity : AppCompatActivity() {
             REQUIRED_PERMISSION
         ) == PackageManager.PERMISSION_GRANTED
 
-    private var currentImageUri: Uri? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySignupInvestorBinding.inflate(layoutInflater)
+        binding = ActivityUploadInvestorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        usernameEditText = binding.edRegisterUsername
-        emailEditText = binding.edRegisterEmail
-        passwordEditText = binding.edRegisterPassword
-        fullnameEditText = binding.edRegisterFullname
-        phoneNumberEditText = binding.edRegisterPhone
-        investorNameEditText = binding.edInvestorName
-        locationEditText = binding.edLocation
-        investmentFocusEditText = binding.edInvestmentFocus
-        stagesEditText = binding.edStages
-        thesisEditText = binding.edThesis
-        totalDealsEditText = binding.edTotalDeals
-        totalInvestmentsEditText = binding.edTotalInvestments
-        dealTypeEditText = binding.edDealType
-        geographicFocusEditText = binding.edGeographicFocus
-        criteriaEditText = binding.edCriteria
+        if(!allPermissionsGranted()) {
+            requestPermissionLauncher.launch(REQUIRED_PERMISSION)
+        }
 
         binding.galleryButton.setOnClickListener { startGallery() }
-        binding.signupButton.setOnClickListener { setupAction() }
+        binding.uploadBtn.setOnClickListener { uploadInvestor() }
 
         setupView()
         playAnimation()
@@ -132,31 +104,31 @@ class SignupInvestorActivity : AppCompatActivity() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.signupButton.isEnabled = !isLoading
+        binding.uploadBtn.isEnabled = !isLoading
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun setupAction() {
+    private fun uploadInvestor() {
         currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, this).reduceFileImage()
-            Log.d("Image File", "showImage: ${imageFile.path}")
-            val username = binding.usernameEditTextLayout.editText?.text.toString().trim()
-            val email = binding.emailEditTextLayout.editText?.text.toString().trim()
-            val password = binding.passwordEditTextLayout.editText?.text.toString().trim()
-            val fullname = binding.nameEditTextLayout.editText?.text.toString().trim()
-            val phoneNumber = binding.phoneEditTextLayout.editText?.text.toString().trim()
+            val img_file = uriToFile(uri, this).reduceFileImage()
+            Log.d("Image File", "showImage: ${img_file.path}")
+
             val investorName = binding.investorNameEditTextLayout.editText?.text.toString().trim()
             val location = binding.locationEditTextLayout.editText?.text.toString().trim()
             val investmentFocus = binding.investmentFocusEditTextLayout.editText?.text.toString().trim()
             val stages = binding.stagesEditTextLayout.editText?.text.toString().trim()
             val thesis = binding.thesisEditTextLayout.editText?.text.toString().trim()
+            val phoneNumber = binding.phoneNumberEditTextLayout.editText?.text.toString().trim()
+
             val totalDeals = binding.totalDealsEditTextLayout.editText?.text.toString().trim().toIntOrNull() ?: 0
             val totalInvestments = binding.totalInvestmentsEditTextLayout.editText?.text.toString().trim().toIntOrNull() ?: 0
+
             val dealType = binding.dealTypeEditTextLayout.editText?.text.toString().trim()
             val geographicFocus = binding.geographicFocusEditTextLayout.editText?.text.toString().trim()
             val criteria = binding.criteriaEditTextLayout.editText?.text.toString().trim()
 
-            viewModel.registerInvestor(imageFile, username, email, password, fullname, phoneNumber, investorName, location, investmentFocus, stages, thesis, totalDeals, totalInvestments, dealType, geographicFocus, criteria).observe(this) { result ->
+
+            viewModel.uploadInvestor(img_file, investorName, location, investmentFocus, stages, thesis, totalDeals, totalInvestments, dealType, geographicFocus, criteria, phoneNumber).observe(this) { result ->
                 if (result != null) {
                     when (result) {
                         is Result.Loading -> {
@@ -166,6 +138,7 @@ class SignupInvestorActivity : AppCompatActivity() {
                         is Result.Success -> {
                             showLoading(false)
                             result.data.message?.let { showToast(it) }
+                            navigateToInvestor()
                         }
 
                         is Result.Error -> {
@@ -176,6 +149,13 @@ class SignupInvestorActivity : AppCompatActivity() {
                 }
             }
         } ?: showToast(getString(R.string.empty_image_warning))
+    }
+
+    private fun navigateToInvestor() {
+        val intent = Intent(this, InvestorFragment::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+        finish()
     }
 
     private fun showToast(message: String) {
@@ -193,27 +173,8 @@ class SignupInvestorActivity : AppCompatActivity() {
             repeatMode = ObjectAnimator.REVERSE
         }.start()
 
-        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
-        val usernameTextView =
-            ObjectAnimator.ofFloat(binding.usernameTextView, View.ALPHA, 1f).setDuration(100)
-        val usernameEditTextLayout =
-            ObjectAnimator.ofFloat(binding.usernameEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val emailTextView =
-            ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(100)
-        val emailEditTextLayout =
-            ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val nameTextView =
-            ObjectAnimator.ofFloat(binding.nameTextView, View.ALPHA, 1f).setDuration(100)
-        val nameEditTextLayout =
-            ObjectAnimator.ofFloat(binding.nameEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val passwordTextView =
-            ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
-        val passwordEditTextLayout =
-            ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val phoneTextView =
-            ObjectAnimator.ofFloat(binding.phoneTextView, View.ALPHA, 1f).setDuration(100)
-        val phoneEditTextLayout =
-            ObjectAnimator.ofFloat(binding.phoneEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val title =
+            ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
         val investorNameTextView =
             ObjectAnimator.ofFloat(binding.investorNameTextView, View.ALPHA, 1f).setDuration(100)
         val investorNameEditTextLayout =
@@ -254,21 +215,16 @@ class SignupInvestorActivity : AppCompatActivity() {
             ObjectAnimator.ofFloat(binding.criteriaTextView, View.ALPHA, 1f).setDuration(100)
         val criteriaEditTextLayout =
             ObjectAnimator.ofFloat(binding.criteriaEditTextLayout, View.ALPHA, 1f).setDuration(100)
-        val signup = ObjectAnimator.ofFloat(binding.signupButton, View.ALPHA, 1f).setDuration(100)
+        val phoneNumberTextView =
+            ObjectAnimator.ofFloat(binding.phoneNumberTextView, View.ALPHA, 1f).setDuration(100)
+        val phoneNumberEditTextLayout =
+            ObjectAnimator.ofFloat(binding.phoneNumberEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val upload =
+            ObjectAnimator.ofFloat(binding.uploadBtn, View.ALPHA, 1f).setDuration(100)
 
         AnimatorSet().apply {
             playSequentially(
                 title,
-                usernameTextView,
-                usernameEditTextLayout,
-                emailTextView,
-                emailEditTextLayout,
-                nameTextView,
-                nameEditTextLayout,
-                passwordTextView,
-                passwordEditTextLayout,
-                phoneTextView,
-                phoneEditTextLayout,
                 investorNameTextView,
                 investorNameEditTextLayout,
                 locationTextView,
@@ -289,7 +245,9 @@ class SignupInvestorActivity : AppCompatActivity() {
                 geographicFocusEditTextLayout,
                 criteriaTextView,
                 criteriaEditTextLayout,
-                signup
+                phoneNumberTextView,
+                phoneNumberEditTextLayout,
+                upload
             )
             startDelay = 100
         }.start()

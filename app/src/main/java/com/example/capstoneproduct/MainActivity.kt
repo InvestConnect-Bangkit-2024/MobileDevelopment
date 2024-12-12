@@ -10,6 +10,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.capstoneproduct.databinding.ActivityMainBinding
+import com.example.capstoneproduct.ui.investor.InvestorFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -24,6 +25,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
+
+        val sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putBoolean("isLoggedIn", true)
+        editor.apply()
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Kode buat passing each menu

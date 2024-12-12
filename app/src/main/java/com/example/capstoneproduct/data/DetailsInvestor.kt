@@ -1,14 +1,13 @@
 package com.example.capstoneproduct.data
 
-import com.example.capstoneproduct.data.investors.Data
 import com.google.gson.annotations.SerializedName
 
 data class DetailsInvestor(
 
-	@field:SerializedName("data")
+    @field:SerializedName("data")
 	val data: Data? = null,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String? = null
 )
 

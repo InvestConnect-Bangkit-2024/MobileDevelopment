@@ -1,6 +1,7 @@
 package com.example.capstoneproduct.ui.investor
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -15,6 +16,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneproduct.databinding.FragmentInvestorBinding
+import com.example.capstoneproduct.ui.upload.investor.UploadInvestorActivity
 import com.example.capstoneproduct.ui.adapter.InvestorAdapter
 
 class InvestorFragment : Fragment() {
@@ -29,6 +31,7 @@ class InvestorFragment : Fragment() {
         InvestorViewModelFactory.getInstance(requireContext())
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,15 +43,41 @@ class InvestorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        investorRv = binding.rvInvestor
+        investorAdapter = InvestorAdapter()
+        investorRv.layoutManager = LinearLayoutManager(context)
+        investorRv.adapter = investorAdapter
+
         if (isNetworkAvailable(requireContext())) {
             investorViewModel.getInvestor()
         } else {
             Toast.makeText(requireContext(), "No internet connection", Toast.LENGTH_SHORT).show()
         }
 
+        investorViewModel.investor.observe(viewLifecycleOwner) { investor ->
+            Log.d("InvestorFragment", "Investors: $investor") // Debug log
+            investorAdapter.submitList(investor)
+        }
 
-        setupRecyclerView()
-        observeViewModel()
+        investorViewModel.isLoading.observe(viewLifecycleOwner) { loading ->
+            Log.d("InvestorFragment", "Loading: $loading") // Debug log
+            binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+        }
+
+        investorViewModel.isError.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        addButton()
+    }
+
+    private fun addButton() {
+        binding.addButton.setOnClickListener {
+            val intent = Intent(requireContext(), UploadInvestorActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun isNetworkAvailable(context: Context): Boolean {
@@ -69,31 +98,6 @@ class InvestorFragment : Fragment() {
         }
     }
 
-    private fun observeViewModel() {
-        investorViewModel.investor.observe(viewLifecycleOwner) { investor ->
-            Log.d("InvestorFragment", "Investors: $investor") // Debug log
-            investorAdapter.submitList(investor)
-        }
-
-        investorViewModel.isLoading.observe(viewLifecycleOwner) { loading ->
-            Log.d("InvestorFragment", "Loading: $loading") // Debug log
-            binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
-        }
-
-        investorViewModel.isError.observe(viewLifecycleOwner) {
-            if (it) {
-                Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-
-    private fun setupRecyclerView() {
-        investorRv = binding.rvInvestor
-        investorAdapter = InvestorAdapter()
-        investorRv.layoutManager = LinearLayoutManager(context)
-        investorRv.adapter = investorAdapter
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

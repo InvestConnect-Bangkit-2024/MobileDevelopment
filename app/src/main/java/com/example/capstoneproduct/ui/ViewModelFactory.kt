@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneproduct.data.di.Injection
 import com.example.capstoneproduct.data.repository.UserRepository
 import com.example.capstoneproduct.ui.account.login.LoginInvestorViewModel
-import com.example.capstoneproduct.ui.account.signup.SignupInvestorViewModel
+import com.example.capstoneproduct.ui.account.signup.SignupViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return when {
-            modelClass.isAssignableFrom(SignupInvestorViewModel::class.java) -> {
-                SignupInvestorViewModel(repository) as T
+            modelClass.isAssignableFrom(SignupViewModel::class.java) -> {
+                SignupViewModel(repository) as T
             }
             modelClass.isAssignableFrom(LoginInvestorViewModel::class.java) -> {
                 LoginInvestorViewModel(repository) as T

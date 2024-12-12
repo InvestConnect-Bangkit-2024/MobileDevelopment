@@ -53,4 +53,21 @@
     <string name="upload">Upload</string>
     <string name="gallery">Gallery</string>
     <string name="empty_image_warning">Silakan masukkan berkas gambar terlebih dahulu.</string>
+    <string name="addButton">Add Button</string>
+    <string name="request_offer">Incoming Offering</string>
+    <string name="send_offer">Sent Offering</string>
+    <string name="company_name">Company name</string>
+    <string name="team_members">Team Members</string>
+    <string name="business_model">Business Model</string>
+    <string name="loyal_customers">Loyal Customers</string>
+    <string name="market_size">Market Size</string>
+    <string name="market_target">Market Target</string>
+    <string name="amount_seeking">Amount Seeking</string>
+    <string name="funding_raised">Founding Raised</string>
+    <string name="revenue">Revenue</string>
+    <string name="profitability">Profitability</string>
+    <string name="growth_rate">Growth Rate</string>
+    <string name="preferred_investment_type">Preffered Investment Type</string>
+    <string name="intended_use_of_funds">Intended Use of Funds</string>
+    <string name="phone_number">Phone Number</string>
 </resources>

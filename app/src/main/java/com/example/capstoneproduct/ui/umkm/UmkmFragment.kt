@@ -1,5 +1,6 @@
 package com.example.capstoneproduct.ui.umkm
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.capstoneproduct.databinding.FragmentUmkmBinding
+import com.example.capstoneproduct.ui.upload.umkm.UploadUmkmActivity
 import com.example.capstoneproduct.ui.adapter.UmkmAdapter
 
 class UmkmFragment : Fragment() {
@@ -53,8 +55,18 @@ class UmkmFragment : Fragment() {
                 Toast.makeText(context, "Error", Toast.LENGTH_SHORT).show()
             }
         }
+
+        addButton()
         umkmViewModel.getUmkm()
     }
+
+    private fun addButton() {
+        binding.addButton.setOnClickListener {
+            val intent = Intent(requireContext(), UploadUmkmActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         Log.d("InvestorFragment", "onDestroyView: ")

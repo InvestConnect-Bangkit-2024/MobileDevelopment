@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.account.signup.SignupInvestorActivity">
+    tools:context=".ui.upload.umkm.UploadUmkmActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,9 +28,9 @@
             android:id="@+id/titleTextView"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="16dp"
+            android:textAlignment="center"
             android:alpha="0"
             android:text="@string/title_signup_page"
             android:textColor="@color/black"
@@ -45,10 +45,8 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
             android:contentDescription="@null"
             app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,20 +66,20 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-            android:id="@+id/usernameTextView"
+            android:id="@+id/companyNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="8dp"
             android:alpha="0"
-            android:text="@string/username"
+            android:text="@string/company_name"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/galleryButton"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/usernameEditTextLayout"
+            android:id="@+id/companyNameEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -90,11 +88,11 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/usernameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/companyNameTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_register_username"
+                android:id="@+id/ed_company_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
@@ -102,20 +100,20 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/emailTextView"
+            android:id="@+id/foundingDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:text="@string/email"
+            android:text="@string/tv_title_date"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/usernameEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/companyNameEditTextLayout"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/emailEditTextLayout"
+            android:id="@+id/foundingDateEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -124,70 +122,32 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailTextView"
+            app:layout_constraintTop_toBottomOf="@+id/foundingDateTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_register_email"
+                android:id="@+id/ed_founding_date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="10"
-                android:inputType="textEmailAddress" />
+                android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/passwordTextView"
+            android:id="@+id/founderNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:text="@string/password"
+            android:text="@string/tv_title_founder"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/foundingDateEditTextLayout"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/passwordEditTextLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:alpha="0"
-            app:endIconMode="password_toggle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
-            tools:alpha="100">
-
-            <com.example.capstoneproduct.ui.button.MyEditText
-                android:id="@+id/ed_register_password"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:ems="10"
-                android:inputType="textPassword"
-                android:maxLength="30"
-                app:errorEnabled="true"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:alpha="0"
-            android:text="@string/name"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout"
-            tools:alpha="100" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nameEditTextLayout"
+            android:id="@+id/founderNameEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -196,84 +156,15 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/founderNameTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_register_fullname"
+                android:id="@+id/ed_founder_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:ems="10"
-                android:inputType="textEmailAddress" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/phoneTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:alpha="0"
-            android:text="@string/phone"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameEditTextLayout"
-            tools:alpha="100" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneEditTextLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:alpha="0"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneTextView"
-            tools:alpha="100">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_register_phone"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/phone_number_hint"
-                android:textStyle="italic"
                 android:ems="10"
                 android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/investorNameTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:alpha="0"
-            android:text="@string/title_investor_name"
-            android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneEditTextLayout"
-            tools:alpha="100" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/investorNameEditTextLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:alpha="0"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/investorNameTextView"
-            tools:alpha="100">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_investor_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -281,12 +172,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
             android:text="@string/tv_title_location"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/investorNameEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/founderNameEditTextLayout"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -306,24 +197,25 @@
                 android:id="@+id/ed_location"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:ems="10"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/investmentFocusTextView"
+            android:id="@+id/sectorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:text="@string/tv_investment_focus"
+            android:text="@string/tv_title_sector"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/locationEditTextLayout"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/investmentFocusEditTextLayout"
+            android:id="@+id/sectorEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -332,31 +224,32 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/investmentFocusTextView"
+            app:layout_constraintTop_toBottomOf="@+id/sectorTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_investment_focus"
+                android:id="@+id/ed_sector"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:ems="10"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/stagesTextView"
+            android:id="@+id/stageTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
             android:text="@string/tv_title_stages"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/investmentFocusEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/sectorEditTextLayout"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/stagesEditTextLayout"
+            android:id="@+id/stageEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -365,31 +258,32 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stagesTextView"
+            app:layout_constraintTop_toBottomOf="@+id/stageTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_stages"
+                android:id="@+id/ed_stage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:ems="10"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/thesisTextView"
+            android:id="@+id/descriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:text="@string/tv_title_thesis"
+            android:text="@string/tv_title_description"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/stagesEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/stageEditTextLayout"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/thesisEditTextLayout"
+            android:id="@+id/descriptionEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -398,31 +292,32 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/thesisTextView"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_thesis"
+                android:id="@+id/ed_description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:ems="10"
                 android:inputType="textMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/totalDealsTextView"
+            android:id="@+id/teamMembersTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:text="@string/tv_title_deals"
+            android:text="@string/team_members"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/thesisEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionEditTextLayout"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/totalDealsEditTextLayout"
+            android:id="@+id/teamMembersEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -431,31 +326,134 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/totalDealsTextView"
+            app:layout_constraintTop_toBottomOf="@+id/teamMembersTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_total_deals"
+                android:id="@+id/ed_team_members"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/businessModelTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
+            android:text="@string/business_model"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/teamMembersEditTextLayout"
+            tools:alpha="100" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/businessModelEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/businessModelTextView"
+            tools:alpha="100">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_business_model"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/loyalCustomersTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
+            android:text="@string/loyal_customers"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/businessModelEditTextLayout"
+            tools:alpha="100" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/loyalCustomersEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loyalCustomersTextView"
+            tools:alpha="100">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_loyal_customers"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/marketSizeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
+            android:text="@string/market_size"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loyalCustomersEditTextLayout"
+            tools:alpha="100" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/marketSizeEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/marketSizeTextView"
+            tools:alpha="100">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_market_size"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/totalInvestmentsTextView"
+            android:id="@+id/marketTargetTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:text="@string/tv_title_investments"
+            android:text="@string/market_target"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/totalDealsEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/marketSizeEditTextLayout"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/totalInvestmentsEditTextLayout"
+            android:id="@+id/marketTargetEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -464,31 +462,67 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/totalInvestmentsTextView"
+            app:layout_constraintTop_toBottomOf="@+id/marketTargetTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_total_investments"
+                android:id="@+id/ed_market_target"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberDecimal" />
+                android:ems="10"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:id="@+id/amountSeekingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
+            android:text="@string/amount_seeking"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/marketTargetEditTextLayout"
+            tools:alpha="100" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/amountSeekingEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amountSeekingTextView"
+            tools:alpha="100">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_amount_seeking"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/dealTypeTextView"
+            android:id="@+id/fundingRaisedTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:text="@string/tv_title_dealType"
+            android:text="@string/funding_raised"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/totalInvestmentsEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/amountSeekingEditTextLayout"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/dealTypeEditTextLayout"
+            android:id="@+id/fundingRaisedEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -497,31 +531,169 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dealTypeTextView"
+            app:layout_constraintTop_toBottomOf="@+id/fundingRaisedTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_deal_type"
+                android:id="@+id/ed_funding_raised"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/revenueTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
+            android:text="@string/revenue"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fundingRaisedEditTextLayout"
+            tools:alpha="100" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/revenueEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/revenueTextView"
+            tools:alpha="100">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_revenue"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/profitabilityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
+            android:text="@string/profitability"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/revenueEditTextLayout"
+            tools:alpha="100" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profitabilityEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profitabilityTextView"
+            tools:alpha="100">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_profitability"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/growthRateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
+            android:text="@string/growth_rate"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/profitabilityEditTextLayout"
+            tools:alpha="100" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/growthRateEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/growthRateTextView"
+            tools:alpha="100">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_growth_rate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/preferredInvestmentTypeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:alpha="0"
+            android:text="@string/preferred_investment_type"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/growthRateEditTextLayout"
+            tools:alpha="100" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/preferredInvestmentTypeEditTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:alpha="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/preferredInvestmentTypeTextView"
+            tools:alpha="100">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ed_preferred_investment_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/geographicFocusTextView"
+            android:id="@+id/intendedUseOfFundsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:text="@string/tv_title_geographic"
+            android:text="@string/intended_use_of_funds"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dealTypeEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/preferredInvestmentTypeEditTextLayout"
             tools:alpha="100" />
 
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/geographicFocusEditTextLayout"
+            android:id="@+id/intendedUseOfFundsEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -530,31 +702,32 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/geographicFocusTextView"
+            app:layout_constraintTop_toBottomOf="@+id/intendedUseOfFundsTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_geographic_focus"
+                android:id="@+id/ed_intended_use_of_funds"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:ems="10"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/criteriaTextView"
+            android:id="@+id/phoneNumberTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:alpha="0"
-            android:text="@string/tv_title_criteria"
+            android:text="@string/phone_number"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/geographicFocusEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/intendedUseOfFundsEditTextLayout"
             tools:alpha="100" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/criteriaEditTextLayout"
+            android:id="@+id/phoneNumberEditTextLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -563,27 +736,31 @@
             android:alpha="0"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/criteriaTextView"
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumberTextView"
             tools:alpha="100">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ed_criteria"
+                android:id="@+id/ed_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="textMultiLine" />
+                android:hint="@string/phone_number_hint"
+                android:digits="0123456789"
+                android:textStyle="italic"
+                android:ems="10"
+                android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/signupButton"
+            android:id="@+id/uploadBtn"
             android:layout_width="0dp"
             android:layout_height="64dp"
             android:layout_marginVertical="32dp"
             android:layout_marginHorizontal="32dp"
             android:alpha="0"
-            android:text="@string/signup"
+            android:text="@string/upload"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/criteriaEditTextLayout"
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumberEditTextLayout"
             tools:alpha="100" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -592,7 +769,7 @@
             android:layout_height="64dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintGuide_percent="0.18"
+            app:layout_constraintGuide_percent="0.15"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
