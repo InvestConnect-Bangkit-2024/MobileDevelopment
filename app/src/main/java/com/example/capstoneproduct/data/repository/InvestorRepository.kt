@@ -11,11 +11,10 @@ class InvestorRepository private constructor(
     private val apiService: ApiService,
 ) {
     fun getInvestors(): LiveData<Result<List<DataItem>>> = liveData {
-        emit(Result.Loading) // Emit loading state
-
+        emit(Result.Loading)
         try {
             val response = apiService.getInvestor()
-            emit(Result.Success(response.data)) // Emit success only on valid response
+            emit(Result.Success(response.data))
 
             if (!response.error!!) {
             } else {

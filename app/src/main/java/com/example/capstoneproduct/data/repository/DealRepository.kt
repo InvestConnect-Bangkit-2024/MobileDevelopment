@@ -8,8 +8,8 @@ class DealRepository(
     private val dealApiService: DealApiService
 ) {
 
-    suspend fun enterAmount(amount: Int): InvestmentsRequestResponse {
-        return dealApiService.addInvestmentRequest(amount)
+    suspend fun enterAmount(amount: Int, umkmId: String): InvestmentsRequestResponse {
+        return dealApiService.addInvestmentRequest(amount, umkmId)
     }
 
     companion object{

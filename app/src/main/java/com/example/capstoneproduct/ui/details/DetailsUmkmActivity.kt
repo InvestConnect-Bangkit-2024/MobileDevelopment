@@ -38,8 +38,13 @@ class DetailsUmkmActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val umkmId = intent.getStringExtra("UMKM_ID") ?: ""
+        val umkmName = intent.getStringExtra("UMKM_NAME") ?: ""
+
         binding.btnDeal.setOnClickListener {
             val intent = Intent(this, DealUmkmActivity::class.java)
+            intent.putExtra("UMKM_NAME", tvName.text.toString())
+            intent.putExtra("UMKM_ID", umkmId)
             startActivity(intent)
         }
 

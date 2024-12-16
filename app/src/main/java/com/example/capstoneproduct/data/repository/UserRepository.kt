@@ -1,22 +1,15 @@
 package com.example.capstoneproduct.data.repository
 
-import androidx.lifecycle.liveData
 import com.example.capstoneproduct.data.pref.UserModel
 import com.example.capstoneproduct.data.pref.UserPreference
 import com.example.capstoneproduct.data.response.login.ResponseLogin
 import com.example.capstoneproduct.data.response.register.ResponseRegister
+import com.example.capstoneproduct.data.retrofit.ApiService
 import com.example.capstoneproduct.data.retrofit.AuthApiService
-import com.google.gson.Gson
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.HttpException
-import java.io.File
 
-class UserRepository (
+class UserRepository(
     private val userPreference: UserPreference,
-    private val authApiService: AuthApiService
+    private val authApiService: AuthApiService,
     ) {
 
     suspend fun saveSession(user: UserModel) {

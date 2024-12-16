@@ -7,6 +7,7 @@ import com.example.capstoneproduct.data.di.Injection
 import com.example.capstoneproduct.data.repository.UserRepository
 import com.example.capstoneproduct.ui.account.login.LoginInvestorViewModel
 import com.example.capstoneproduct.ui.account.signup.SignupViewModel
+import com.example.capstoneproduct.ui.home.HomeViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
 
@@ -36,5 +37,4 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             return INSTANCE as ViewModelFactory
         }
     }
-
 }

@@ -70,4 +70,7 @@
     <string name="preferred_investment_type">Preffered Investment Type</string>
     <string name="intended_use_of_funds">Intended Use of Funds</string>
     <string name="phone_number">Phone Number</string>
+    <string name="title_home_welcome">Welcome to\nInvestConnect!</string>
+    <string name="tv_home_desc"> InvestConnect is a platform designed to bridge the gap between investors\nand Small and Medium Enterprises (UMKM) in Indonesia, facilitating access to capital for start-ups and
+investment opportunities for investors. </string>
 </resources>

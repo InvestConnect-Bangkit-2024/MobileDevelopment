@@ -31,27 +31,29 @@ class DealUmkmActivity : AppCompatActivity() {
         binding = ActivityDealUmkmBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // Get the UMKM name from the Intent
-        val umkmName = intent.getStringExtra("UMKM_NAME")
+        val umkmId = intent.getStringExtra("UMKM_ID") ?: ""
+        val umkmName = intent.getStringExtra("UMKM_NAME") ?: ""
 
-        // Now you can use the UMKM name wherever needed in this activity
-        // Example usage:
-        println("UMKM Name: $umkmName")  // For demonstration, you can log or use this name in the UI
-
-        // Set up amount (replace with your logic to get the amount)
-        setupAction()
+        binding.tvUmkm.text = umkmName
+        setupAction(umkmId)
     }
 
-    private fun setupAction() {
+    private fun setupAction(umkmId: String) {
         binding.btnDeal.setOnClickListener {
-            Log.d("DealUmkmActivity", "Button clicked!")  // Add a log to check if the click is being detected
-
+            Log.d("DealUmkmActivity", "Button clicked!")
             val amount = binding.amountEditTextLayout.editText?.text.toString().trim().toIntOrNull() ?: 0
+
+            if (umkmId.isEmpty()) {
+                Toast.makeText(this, "UMKM ID is required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener // Exit the lambda function
+            }
+
             lifecycleScope.launch {
                 try {
                     val response =
-                        viewModel.enterAmount(amount) // Call ViewModel method inside coroutine
+                        viewModel.enterAmount(amount, umkmId) // Call ViewModel method inside coroutine
 
                     // Handle successful response
                     if (response != null) {

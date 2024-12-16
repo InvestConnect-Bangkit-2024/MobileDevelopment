@@ -8,10 +8,11 @@ import retrofit2.http.POST
 
 interface DealApiService {
     @FormUrlEncoded
-    @POST("investors/requests")
+    @POST("investments/offerings")
     suspend fun addInvestmentRequest(
-        @Field("amount") amount: Int
-    ): InvestmentsRequestResponse
+        @Field("amount") amount: Int,
+        @Field("umkm_id") umkmId: String,
+        ): InvestmentsRequestResponse
 
 
 

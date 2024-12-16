@@ -11,6 +11,8 @@ import android.util.Log
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -34,6 +36,11 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var emailEditText: TextInputEditText
     private lateinit var passwordEditText: MyEditText
 
+    private lateinit var sectorSpinner: Spinner
+    private lateinit var stageSpinner: Spinner
+    private lateinit var businessModelSpinner: Spinner
+    private lateinit var loyalCustomersSpinner: Spinner
+
     private val viewModel by viewModels<SignupViewModel> {
         ViewModelFactory.getInstance(this)
     }
@@ -53,9 +60,41 @@ class SignupActivity : AppCompatActivity() {
             Toast.makeText(this, "Disconnected", Toast.LENGTH_SHORT).show()
         }
 
+        sectorSpinner = binding.sectorSpinner
+        stageSpinner = binding.stageSpinner
+        businessModelSpinner = binding.businessModelSpinner
+        loyalCustomersSpinner = binding.loyalCustomersSpinner
+
+        setupSpinners()
+
         setupView()
         setupAction()
         playAnimation()
+    }
+
+    private fun setupSpinners() {
+        val sectors = arrayOf("Education Technology", "Health Technology", "Finance", "Agriculture")
+        val sectorAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, sectors)
+        sectorAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        sectorSpinner.adapter = sectorAdapter
+
+        // Stage Spinner
+        val stages = arrayOf("Seed", "Growth", "Mature")
+        val stageAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, stages)
+        stageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        stageSpinner.adapter = stageAdapter
+
+        // Business Model Spinner
+        val businessModels = arrayOf("SaaS", "Marketplace", "Subscription", "Freemium")
+        val businessModelAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, businessModels)
+        businessModelAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        businessModelSpinner.adapter = businessModelAdapter
+
+        // Loyal Customers Spinner
+        val loyalCustomers = arrayOf("0", "1000", "5000", "10000", "50000", "100000", "More than 100000")
+        val loyalCustomersAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, loyalCustomers)
+        loyalCustomersAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        loyalCustomersSpinner.adapter = loyalCustomersAdapter
     }
 
     private fun setupView() {

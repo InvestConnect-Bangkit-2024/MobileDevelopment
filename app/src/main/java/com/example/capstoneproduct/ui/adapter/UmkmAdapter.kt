@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.example.capstoneproduct.R
 import com.example.capstoneproduct.data.umkm.DataItem
 import com.example.capstoneproduct.databinding.RvRowBinding
-import com.example.capstoneproduct.ui.details.DetailsActivity
 import com.example.capstoneproduct.ui.details.DetailsUmkmActivity
 
 class UmkmAdapter : ListAdapter<DataItem, UmkmAdapter.ListViewHolder>(DIFF_CALLBACK){
@@ -27,6 +26,8 @@ class UmkmAdapter : ListAdapter<DataItem, UmkmAdapter.ListViewHolder>(DIFF_CALLB
 
         holder.itemView.setOnClickListener{
             val intent = Intent(holder.itemView.context, DetailsUmkmActivity::class.java)
+            intent.putExtra("UMKM_ID", data.umkmId)
+
             intent.putExtra("companyName", data.companyName)
             intent.putExtra("location", data.location)
             intent.putExtra("sector", data.sector)
@@ -40,6 +41,10 @@ class UmkmAdapter : ListAdapter<DataItem, UmkmAdapter.ListViewHolder>(DIFF_CALLB
             intent.putExtra("img", data.imgUrl)
             holder.itemView.context.startActivity(intent)
         }
+    }
+
+    override fun getItemCount(): Int {
+        return currentList.size
     }
 
     class ListViewHolder(private val binding: RvRowBinding) : RecyclerView.ViewHolder(binding.root) {

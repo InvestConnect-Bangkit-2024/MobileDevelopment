@@ -56,7 +56,7 @@ class InvestorFragment : Fragment() {
 
         investorViewModel.investor.observe(viewLifecycleOwner) { investor ->
             Log.d("InvestorFragment", "Investors: $investor") // Debug log
-            investorAdapter.submitList(investor)
+            investorAdapter.submitList(investor) // Update the adapter with the new list
         }
 
         investorViewModel.isLoading.observe(viewLifecycleOwner) { loading ->

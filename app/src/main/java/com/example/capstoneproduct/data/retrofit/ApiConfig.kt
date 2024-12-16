@@ -87,5 +87,19 @@ class ApiConfig {
                 .build()
             return retrofit.create(DealApiService::class.java)
         }
+
+        fun getHomeApiService(): HomeApiService {
+            val loggingInterceptor =
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            val client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build()
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://jsonapi-444901.et.r.appspot.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+            return retrofit.create(HomeApiService::class.java)
+        }
     }
 }

@@ -5,6 +5,6 @@ import com.example.capstoneproduct.data.repository.DealRepository
 
 class DealUmkmViewModel(private val repository: DealRepository) : ViewModel() {
 
-    suspend fun enterAmount(amount: Int) = repository.enterAmount(amount)
+    suspend fun enterAmount(amount: Int, umkmId: String) = repository.enterAmount(amount, umkmId)
 
 }

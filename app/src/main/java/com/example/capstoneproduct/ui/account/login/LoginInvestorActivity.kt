@@ -79,6 +79,10 @@ class LoginInvestorActivity : AppCompatActivity() {
                                 response.data?.token.toString()
                             )
                         )
+                        val sharedPreferences = getSharedPreferences("my_preferences", Context.MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putBoolean("isLoggedIn", true)
+                        editor.apply()
                         AlertDialog.Builder(this@LoginInvestorActivity).apply {
                             setTitle("Yeah!")
                             setMessage("Anda berhasil login!")
@@ -93,11 +97,11 @@ class LoginInvestorActivity : AppCompatActivity() {
                             show()
                         }
                     } else {
-                        // Login failed
+                        showLoading(false)
                         showErrorDialog(response.message ?: "Login failed.")
                     }
                 } catch (e: Exception) {
-                    // Handle exception (e.g., network error)
+                    showLoading(false)
                     showErrorDialog("Login failed: ${e.message}")
                 }
             }
