@@ -1,20 +1,18 @@
 package com.example.capstoneproduct.ui.umkm
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.capstoneproduct.R
-import com.example.capstoneproduct.data.repository.Result
 import com.example.capstoneproduct.databinding.ActivityDealUmkmBinding
 import com.example.capstoneproduct.ui.DealViewModelFactory
-import com.example.capstoneproduct.ui.ViewModelFactory
+import com.example.capstoneproduct.ui.status.StatusFragment
 import kotlinx.coroutines.launch
 
 
@@ -47,14 +45,13 @@ class DealUmkmActivity : AppCompatActivity() {
 
             if (umkmId.isEmpty()) {
                 Toast.makeText(this, "UMKM ID is required", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener // Exit the lambda function
+                return@setOnClickListener
             }
 
             lifecycleScope.launch {
                 try {
                     val response =
-                        viewModel.enterAmount(amount, umkmId) // Call ViewModel method inside coroutine
-
+                        viewModel.enterAmount(amount, umkmId)
                     // Handle successful response
                     if (response != null) {
                         Toast.makeText(
@@ -62,17 +59,29 @@ class DealUmkmActivity : AppCompatActivity() {
                             "Request successful: ${response.message}",
                             Toast.LENGTH_SHORT
                         ).show()
+                        navigateToFragment()
+                        showLoading(true)
                     } else {
-                        // Handle failure (if response is null)
                         Toast.makeText(this@DealUmkmActivity, "Request failed", Toast.LENGTH_SHORT)
                             .show()
                     }
                 } catch (e: Exception) {
-                    // Handle any exceptions (e.g., network issues)
                     Toast.makeText(this@DealUmkmActivity, "Error: ${e.message}", Toast.LENGTH_SHORT)
                         .show()
                 }
             }
         }
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    private fun navigateToFragment() {
+        val statusFragment = StatusFragment() // Create an instance of the fragment
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_status, statusFragment) // Replace the current fragment
+            .addToBackStack(null) // Optional: Add to back stack to allow back navigation
+            .commit() // Commit the transaction
     }
 }

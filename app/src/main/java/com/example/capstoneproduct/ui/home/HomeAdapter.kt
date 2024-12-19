@@ -25,6 +25,7 @@ class HomeAdapter : ListAdapter<CompaniesItem, HomeAdapter.ListViewHolder>(DIFF_
     class ListViewHolder(private val binding: RvRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CompaniesItem) {
             binding.tvName.text = item.name
+            binding.tvSector.text = item.sector
             Glide.with(binding.root.context)
                 .load(item.imgURL)
                 .placeholder(R.drawable.image_placeholder)

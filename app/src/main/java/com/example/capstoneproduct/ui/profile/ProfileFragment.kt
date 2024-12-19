@@ -16,9 +16,9 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ProfileViewModel by viewModels {
-        // Provide your ViewModelFactory if needed
-    }
+//    private val viewModel: ProfileViewModel by viewModels {
+//
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,14 +31,16 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userId = "user-gvFPdAYTaBIPKwxO" // Replace with the actual user ID
-        viewModel.fetchUser Profile(userId)
-
-        // Observe the profile data
-        viewModel.profileData.observe(viewLifecycleOwner) { response ->
-            response?.let {
-                binding.tvUsername.text = it.data.username
-                binding.emailTextView.text = it.data.email
+//        val userId = "user-gvFPdAYTaBIPKwxO" // Replace with the actual user ID
+//        viewModel.fetchUser Profile(userId)
+//
+//        // Observe the profile data
+//        viewModel.profileData.observe(viewLifecycleOwner) { response ->
+//            response?.let {
+//                binding.tvUsername.text = it.data.username
+//                binding.emailTextView.text = it.data.email
+//            }
+//        }
 
         binding.buttonLogout.setOnClickListener {
             logout()

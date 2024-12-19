@@ -9,10 +9,10 @@ import com.example.capstoneproduct.data.retrofit.ApiService
 class StatusRepository private constructor(private val apiService: ApiService,
 ) {
 
-    fun getStatus(): LiveData<Result<List<DataItem>>> = liveData {
+    fun getOffers(): LiveData<Result<List<DataItem>>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getRequest()
+            val response = apiService.getOffers()
             emit(Result.Success(response.data))
             if (response.error == false) {
             } else {

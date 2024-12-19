@@ -1,5 +1,6 @@
 package com.example.capstoneproduct.ui.details
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -8,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.capstoneproduct.data.investors.DataItem
-import com.example.capstoneproduct.data.response.upload.investors.Data
 import com.example.capstoneproduct.databinding.ActivityDetailsBinding
+import com.example.capstoneproduct.ui.investor.DealInvestorActivity
 import kotlinx.coroutines.launch
 
 class DetailsActivity : AppCompatActivity() {
@@ -38,7 +39,16 @@ class DetailsActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val investorId = intent.getStringExtra("INVESTOR_ID") ?: ""
+        val investorName = intent.getStringExtra("INVESTOR_NAME") ?: ""
 
+        binding.btnDeal.setOnClickListener {
+            val intent = Intent(this, DealInvestorActivity::class.java).apply {
+                putExtra("INVESTOR_ID", investorId) // Make sure investorId is not null or empty
+                putExtra("INVESTOR_NAME", investorName) // Make sure investorName is not null or empty
+            }
+            startActivity(intent)
+        }
 
         imgPhoto = binding.imgItemPhoto
         tvName = binding.tvItemName

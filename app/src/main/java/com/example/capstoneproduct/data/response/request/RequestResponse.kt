@@ -16,23 +16,29 @@ data class RequestResponse(
 
 data class DataItem(
 
+	@field:SerializedName("umkm_id")
+	val umkmId: String? = null,
+
 	@field:SerializedName("amount")
 	val amount: Int? = null,
-
-	@field:SerializedName("investment_request_id")
-	val investmentRequestId: String? = null,
 
 	@field:SerializedName("user_id")
 	val userId: String? = null,
 
+	@field:SerializedName("img_url")
+	val imgUrl: String? = null,
+
+	@field:SerializedName("company_name")
+	val companyName: String? = null,
+
 	@field:SerializedName("created_at")
 	val createdAt: String? = null,
 
-	@field:SerializedName("confirmed_date")
-	val confirmedDate: Any? = null,
+	@field:SerializedName("investment_offering_id")
+	val investmentOfferingId: String? = null,
 
-	@field:SerializedName("investor_id")
-	val investorId: String? = null,
+	@field:SerializedName("confirmed_date")
+	val confirmedDate: String? = null,
 
 	@field:SerializedName("status")
 	val status: String? = null

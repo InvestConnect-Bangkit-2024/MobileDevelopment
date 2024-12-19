@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/foto_nia" />
 
     <TextView
         android:id="@+id/tvUsername"
@@ -28,7 +28,7 @@
         android:textAlignment="center"
         android:textSize="25sp"
         android:textColor="@color/white"
-        android:text="@string/username"
+        android:text="@string/kania"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textAlignment="center"
-        android:text="@string/email"
+        android:text="@string/kaniaadrina"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

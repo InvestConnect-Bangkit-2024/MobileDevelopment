@@ -22,7 +22,7 @@ class StatusViewModel(private val repository: StatusRepository) : ViewModel() {
 
     fun getStatus() {
         _isLoading.value = true // Set loading to true initially
-        repository.getStatus().observeForever { response ->
+        repository.getOffers().observeForever { response ->
             when (response) {
                 is Result.Loading -> {
                     _isLoading.value = true

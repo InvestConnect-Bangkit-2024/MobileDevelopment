@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.capstoneproduct.data.di.Injection
 import com.example.capstoneproduct.data.repository.DealRepository
+import com.example.capstoneproduct.ui.investor.DealInvestorViewModel
 import com.example.capstoneproduct.ui.umkm.DealUmkmViewModel
 
 class DealViewModelFactory(private val repository: DealRepository) : ViewModelProvider.NewInstanceFactory() {
@@ -14,6 +15,9 @@ class DealViewModelFactory(private val repository: DealRepository) : ViewModelPr
         return when {
             modelClass.isAssignableFrom(DealUmkmViewModel::class.java) -> {
                 DealUmkmViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(DealInvestorViewModel::class.java) -> {
+                DealInvestorViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
